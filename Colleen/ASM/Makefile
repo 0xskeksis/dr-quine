@@ -1,0 +1,61 @@
+NAME	?= Colleen
+
+CC		:= gcc
+
+CFLAGS	:= -Wall -Werror -Wextra
+
+NASM		:=	nasm -f
+
+NASMFLAGS	:=	elf64
+
+SRCS	?=  Colleen.s \
+
+BUILD	:= .objs
+
+OBJS	:= $(addprefix $(BUILD)/, $(SRCS:%.s=%.o))
+
+MAKEFLAGS	+= --no-print-directory
+
+RM			:= rm -rf
+
+DIR_UP		= mkdir -p $(@D)
+
+################################################################################
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $@
+	@printf " $(GREEN)$(BOLD)$(ITALIC)■$(RESET)  building	$(GREEN)$(BOLD)$(ITALIC)$(NAME)$(RESET)\n"
+
+$(BUILD)/%.o: %.s
+	@$(DIR_UP)
+	@$(NASM) $(NASMFLAGS) $^ -o $@
+	@printf " $(CYAN)$(BOLD)$(ITALIC)■$(RESET)  compiling	$(GRAY)$(BOLD)$(ITALIC)$<$(RESET)\n"
+
+clean:
+	@$(RM) $(BUILD)
+
+fclean: clean
+	@$(RM) $(NAME)
+
+re: fclean all
+
+################################################################################
+
+
+BLACK		=	\033[30m
+RED			=	\033[31m
+GREEN		=	\033[32m
+YELLOW		=	\033[33m
+BLUE		=	\033[34m
+MAGENTA		=	\033[35m
+CYAN		=	\033[36m
+WHITE		=	\033[37m
+GRAY		=	\033[90m
+
+BOLD		=	\033[1m
+ITALIC		=	\033[3m
+
+RESET		=	\033[0m
+LINE_CLR	=	\33[2K\r
