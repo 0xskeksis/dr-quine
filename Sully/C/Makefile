@@ -1,10 +1,10 @@
-NAME	?= Colleen
+NAME	?= Sully
 
 CC	:=	clang
 
 CFLAGS	:= -Wall -Wextra -Werror -g
 
-SRCS	?=  Coleen.c \
+SRCS	?=  Sully.c \
 
 BUILD	:= .objs
 
