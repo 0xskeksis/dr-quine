@@ -31,6 +31,7 @@ $(BUILD)/%.o: %.c
 
 clean:
 	@$(RM) $(BUILD)
+	@$(RM) Sully_*
 
 fclean: clean
 	@$(RM) $(NAME)
