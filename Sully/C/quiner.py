@@ -7,5 +7,7 @@ with open(0, "r") as f:
             print("%2$c", end="")
         elif c == '?':
             print("%3$s", end="")
+        elif c == 'B':
+            print("%4$d", end="")
         else:
             print(c, end="")
